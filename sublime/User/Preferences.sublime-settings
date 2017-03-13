@@ -39,8 +39,9 @@
 	"scroll_past_end": false,
 	"show_scroll_tabs": true,
 	"show_tabs_dropdown": false,
+	"spell_check": true,
 	"theme": "One Dark.sublime-theme",
 	"tree_animation_enabled": false,
 	"vintage_start_in_command_mode": true,
-	"spell_check": true,
+	"trim_trailing_white_space_on_save": true,
 }
