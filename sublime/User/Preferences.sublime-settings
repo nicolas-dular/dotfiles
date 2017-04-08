@@ -11,6 +11,14 @@
 	"draw_white_space": "none",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
+	"file_exclude_patterns":
+	[
+		"*.beam",
+		"*.erl",
+		"erlc*",
+		"*.erl.*",
+		".DS_Store"
+	],
 	"folder_exclude_patterns":
 	[
 		".svn",
@@ -21,14 +29,7 @@
 		"dist",
 		"logs",
 		"deps",
-		"_build",
-	],
-	"file_exclude_patterns":
-	[
-		"*.beam",
-		"*.erl",
-		"erlc*",
-		"*.erl.*",
+		"_build"
 	],
 	"font_face": "Menlo",
 	"font_size": 14,
@@ -54,6 +55,7 @@
 	"show_scroll_tabs": true,
 	"show_tabs_dropdown": false,
 	"spell_check": true,
+	"tab_size": 2,
 	"theme": "One Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"tree_animation_enabled": false,
