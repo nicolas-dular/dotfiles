@@ -1,13 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+autoload -Uz compinit
+compinit
 
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/nicolas/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,8 +48,6 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -88,26 +81,37 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 bindkey '^ ' autosuggest-accept
 
-pspdfmux() {
-  tmux has-session -t pspdfkit
+alias gt="gittower ."
+
+docmux() {
+  tmux has-session -t docflow
   if [ $? != 0 ]; then
-    tmux new-session -s pspdfkit -n 'PSPDFKit' -d
-    tmux send-keys -t pspdfkit 'cd ~/dev/PSPDFKit-Web' C-m
-    tmux send-keys -t pspdfkit 'git status' C-m
+    tmux new-session -s docflow -n 'DocFlow' -d
+    tmux send-keys -t docflow 'cd ~/dev/saas-app' C-m
+    tmux send-keys -t docflow 'atom .' C-m
+    tmux send-keys -t docflow 'cd ~/dev/saas-app/backend' C-m
+    tmux send-keys -t docflow 'mix phx.server' C-m
+    tmux send-keys -t docflow 'open /Applications/Google\ Chrome.app http://localhost:4000' C-m
+    
 
-    tmux split-window -h -t pspdfkit -p 30
-    tmux send-keys -t pspdfkit:0.1 'cd ~/dev/PSPDFKit-Web' C-m
-    tmux send-keys -t pspdfkit:0.1 'yarn start' C-m
+    tmux split-window -h -t docflow -p 30
+    tmux send-keys -t docflow:0.1 'cd ~/dev/PSPDFKit-Web' C-m
+    tmux send-keys -t docflow:0.1 'yarn' C-m
+    tmux send-keys -t docflow:0.1 'yarn start' C-m
 
-    tmux split-window -v -t pspdfkit:0.1
-    tmux send-keys -t pspdfkit:0.2 'cd ~/dev/pssync-server' C-m
-    tmux send-keys -t pspdfkit:0.2 'script/server' C-m
+    tmux split-window -v -t docflow:0.1
+    tmux send-keys -t docflow:0.2 'cd ~/dev/pssync-server' C-m
+    tmux send-keys -t docflow:0.2 'gco master' C-m
+    tmux send-keys -t docflow:0.2 'gl' C-m
+    tmux send-keys -t docflow:0.2 'script/server' C-m
 
-    tmux split-window -v -t pspdfkit:0.2
-    tmux send-keys -t pspdfkit:0.3 'cd ~/dev/PSPDFKit-Web' C-m
-    tmux send-keys -t pspdfkit:0.3 'yarn outdated' C-m
+    tmux split-window -v -t docflow:0.2
+    tmux send-keys -t docflow:0.3 'cd ~/dev/saas-app/frontend' C-m
   fi
   
-  tmux select-pane -t pspdfkit:0.0
-  tmux attach -t pspdfkit
+  tmux select-pane -t docflow:0.0
+  tmux attach -t docflow
 }
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
